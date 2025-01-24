@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz on Paper Cups</title>
+    <style>
+        body {
+            background-image: url('https://fruitbasket.limepack.com/blog/wp-content/uploads/2024/06/recyclable-paper-cup.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .overlay {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .quiz-title {
+            text-align: center;
+            color: #ff6f61;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            background-color: #ff6f61;
+            color: #fff;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #e65a4f;
+        }
+
+        .progress-bar {
+            height: 25px;
+            background-color: #ff6f61;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #popup h2 {
+            color: #ff6f61;
+        }
+
+        #popup button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        #popup button:hover {
+            background-color: #e65a4f;
+        }
+
+        #overlay-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="calc.html">Paper Cups Percentage Change</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="overlay-bg"></div>
+    <div class="overlay">
+        <h2 class="quiz-title">Quiz on Paper Cups</h2>
+        <form id="quizForm">
+            <div class="mb-3">
+                <label class="form-label">1. What harmful chemical is commonly found in disposable paper cups?</label>
+                <div>
+                    <input type="radio" name="q1" value="1" id="q1a">
+                    <label for="q1a">BPA</label><br>
+                    <input type="radio" name="q1" value="0" id="q1b">
+                    <label for="q1b">Chlorine</label><br>
+                    <input type="radio" name="q1" value="0" id="q1c">
+                    <label for="q1c">Ozone</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">2. How many times can a single-use paper cup be recycled?</label>
+                <div>
+                    <input type="radio" name="q2" value="0" id="q2a">
+                    <label for="q2a">10</label><br>
+                    <input type="radio" name="q2" value="1" id="q2b">
+                    <label for="q2b">1-2</label><br>
+                    <input type="radio" name="q2" value="0" id="q2c">
+                    <label for="q2c">5</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">3. What is a sustainable alternative to paper cups?</label>
+                <div>
+                    <input type="radio" name="q3" value="1" id="q3a">
+                    <label for="q3a">Reusable cups</label><br>
+                    <input type="radio" name="q3" value="0" id="q3b">
+                    <label for="q3b">Plastic cups</label><br>
+                    <input type="radio" name="q3" value="0" id="q3c">
+                    <label for="q3c">Disposable cups</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">4. Which coating on paper cups makes recycling difficult?</label>
+                <div>
+                    <input type="radio" name="q4" value="1" id="q4a">
+                    <label for="q4a">Plastic coating</label><br>
+                    <input type="radio" name="q4" value="0" id="q4b">
+                    <label for="q4b">Wax coating</label><br>
+                    <input type="radio" name="q4" value="0" id="q4c">
+                    <label for="q4c">Aluminum coating</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">5. What percentage of paper cups are recycled globally?</label>
+                <div>
+                    <input type="radio" name="q5" value="1" id="q5a">
+                    <label for="q5a">1%</label><br>
+                    <input type="radio" name="q5" value="0" id="q5b">
+                    <label for="q5b">10%</label><br>
+                    <input type="radio" name="q5" value="0" id="q5c">
+                    <label for="q5c">25%</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">6. What is the main raw material used in paper cups?</label>
+                <div>
+                    <input type="radio" name="q6" value="1" id="q6a">
+                    <label for="q6a">Wood pulp</label><br>
+                    <input type="radio" name="q6" value="0" id="q6b">
+                    <label for="q6b">Plastic</label><br>
+                    <input type="radio" name="q6" value="0" id="q6c">
+                    <label for="q6c">Cotton</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">7. Which of the following is NOT a benefit of reusable cups?</label>
+                <div>
+                    <input type="radio" name="q7" value="1" id="q7a">
+                    <label for="q7a">Increased waste production</label><br>
+                    <input type="radio" name="q7" value="0" id="q7b">
+                    <label for="q7b">Reduced pollution</label><br>
+                    <input type="radio" name="q7" value="0" id="q7c">
+                    <label for="q7c">Cost-effectiveness</label>
+                </div>
+            </div>
+            <!-- Add questions 8 to 15 following the same structure -->
+
+            <button type="button" class="btn btn-submit w-100" onclick="submitQuiz()">Submit Quiz</button>
+        </form>
+        <div class="progress mt-3">
+            <div id="scoreBar" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup">
+        <h2>Congratulations!</h2>
+        <p>Thank you for participating in the quiz.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            const answers = new FormData(document.getElementById('quizForm'));
+            let score = 0;
+
+            for (let pair of answers.entries()) {
+                score += parseInt(pair[1]);
+            }
+
+            const totalQuestions = 15; // Update total number of questions
+            const percentage = (score / totalQuestions) * 100;
+
+            const scoreBar = document.getElementById('scoreBar');
+            scoreBar.style.width = percentage + '%';
+            scoreBar.textContent = Math.round(percentage) + '%';
+
+            document.getElementById('overlay-bg').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay-bg').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
